@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: 'app-nova-transferencia',
@@ -7,8 +7,25 @@ import { Component } from "@angular/core";
 })
 
 export class NovaTransferenciaComponent{
-  transferir(){
-    console.log('transferecnia chamada com sucesso');
 
+  // Cria apenas um objeto
+  // @Output() aoTransferir;
+
+  // Cria um objeto com mais recursos, objeto de EventEmitter tipado com generics any que pode receber tanto um valor quanto um caminho ou ambos
+  // @Output() aoTransferi = new EventEmitter<any>();
+
+  @Output() aoTransferir = new EventEmitter<any>();
+
+  valor : number;
+  destino : number;
+
+  transferir(){
+    console.log('transferência chamada com sucesso');
+    const valorEmitir = {
+      valor: this.valor,
+      destino: this.destino
+    }
+    this.aoTransferir.emit( valorEmitir )
   }
+
 }
